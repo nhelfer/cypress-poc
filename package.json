@@ -1,0 +1,33 @@
+{
+  "name": "cypress-poc",
+  "version": "1.0.0",
+  "description": "Essais de l'outil cypress.io",
+  "main": "index.js",
+  "dependencies": {
+    "cypress": "^3.1.1"
+  },
+  "devDependencies": {
+    "eslint-plugin-chai-friendly": "^0.4.1",
+    "eslint-plugin-cypress": "^2.1.2"
+  },
+  "scripts": {
+    "test": "npx cypress open",
+    "cypress:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://nhelfer@github.com/nhelfer/cypress-poc.git"
+  },
+  "keywords": [
+    "test",
+    "automation",
+    "cypress",
+    "UI"
+  ],
+  "author": "nhelfer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nhelfer/cypress-poc/issues"
+  },
+  "homepage": "https://github.com/nhelfer/cypress-poc#readme"
+}
