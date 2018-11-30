@@ -1,6 +1,10 @@
 /// <reference types="Cypress" />
 
 describe('PHF - Scénario Ajout Salarié', function() {
+
+    //Clean
+    require('../actions/phf_clean.js')
+    
     // Connexion
     require('../actions/phf_login.js')
 

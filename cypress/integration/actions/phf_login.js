@@ -2,25 +2,34 @@
 
 describe('PHF - Login', function() {
     it('Se connecte à l\'application', function() {
+
         // Recette
-        cy.visit('http://5.153.53.197:85/app/')
+        //let url = 'http://5.153.53.197:85'
 
         // IC
-        //cy.visit('http://159.122.36.22:85/app/')
+        let url = 'http://159.122.36.22:85'
+
+        let login = '0'
+        let pwd = 'string'
+
+        // Ouverture de la page
+        cy.visit(url+"/app/")
         
         cy.get('.toolbar-title')
             .should('contain', 'Connexion')
 
         cy.get('input[formcontrolname=login]')
-            .type('40')
+            .type(login)
 
         cy.get('input[formcontrolname=password]')
-            .type('Azer1234')
+            .type(pwd)
 
         cy.contains('button', 'connecter')
             .click()
 
         cy.get('.toolbar-title')
             .should('contain', 'Accueil')
+
+
     })
 })

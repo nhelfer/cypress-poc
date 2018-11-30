@@ -1,3 +1,4 @@
 {
-  "projectId": "vsf6tm"
+  "projectId": "vsf6tm",
+  "chromeWebSecurity": true
 }
