@@ -7,21 +7,25 @@ var now = "E2E_2018-11-19_00-46-01"
 
 describe('PHF - Ajout Profil', function() {
     it('Crée un nouveau profil', function() {
-        cy.get('page-administration')
-            .should('exist')
+        cy.expect('page-administration')
+            .to.exist
 
-        if (expect('.selected').contains('Profils').not.to.be.visible) { 
-            // Ce n'est pas le bon onglet, on en change !
-            cy.get('.phf-tabs > a')
-                .contains('Profils')
-                .click()
-        }
+        // On va sur l'onglet Profils
+        /*cy.get('.phf-tabs > a')
+            .contains('Profils')
+            .click()*/
 
         cy.get('.selected')
             .contains('Profils')
             .should('exist')
         
-        var nbProfilDefault = cy.find('ion-icon[ng-reflect-name=phf-delete]').length()
+        // On attend le chargement de la liste des profils
+        cy.get('.page-admin-profil').should('exist')    //sync
+        cy.get('.flex-container').should('exist')    //sync
+        cy.get('ion-icon[aria-label="phf delete"]').should('exist')    //sync
+
+        const nbProfilDefault = cy.get('.page-admin-profil').find('>ion-icon').length
+        debugger
 
         // Remplir le formulaire et valider
 
@@ -33,9 +37,9 @@ describe('PHF - Ajout Profil', function() {
             .contains('Ajouter')
             .click()
 
-        var nbProfilNew = cy.find('ion-icon[ng-reflect-name=phf-delete]').length()
+        const nbProfilNew = cy.get('ion-icon[aria-label="phf delete"]').length
 
-        expect(nbProfilNew).to.be(nbProfilDefault+1)
+        expect(nbProfilNew).equals(nbProfilDefault+1)
 
         if (nbProfilNew = nbProfilDefault+1) {
             cy.get('.block-item ng-star-inserted > input').last()

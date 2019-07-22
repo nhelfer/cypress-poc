@@ -4,8 +4,8 @@
 
 describe('PHF - Menu Salariés', function() {
     it('Se rend sur la gestion des salariés à partir du menu', function() {  
-        cy.get('.toolbar > .bar-buttons')
-            .should('exist')
+        cy.expect('.toolbar > .bar-buttons')
+            .to.exist
 
         if (expect('.menu-foot').not.to.be.visible) { 
             // le menu n'est pas ouvert, on l'ouvre !

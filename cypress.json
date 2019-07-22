@@ -1,4 +1,11 @@
 {
   "projectId": "vsf6tm",
-  "chromeWebSecurity": true
+  "chromeWebSecurity": true,
+
+  "defaultCommandTimeout": 60000,
+  "execTimeout": 60000,
+  "taskTimeout": 60000,
+  "pageLoadTimeout": 120000,
+  "requestTimeout": 120000,
+  "responseTimeout": 60000
 }

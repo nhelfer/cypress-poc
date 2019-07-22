@@ -4,13 +4,13 @@ describe('PHF - Login', function() {
     it('Se connecte à l\'application', function() {
 
         // Recette
-        //let url = 'http://5.153.53.197:85'
+        let url = 'http://84.239.73.82:85'
 
         // IC
-        let url = 'http://159.122.36.22:85'
+        //let url = 'http://84.239.73.72:85'
 
-        let login = '0'
-        let pwd = 'string'
+        const login = '0'
+        const pwd = 'string'
 
         // Ouverture de la page
         cy.visit(url+"/app/")
@@ -24,12 +24,13 @@ describe('PHF - Login', function() {
         cy.get('input[formcontrolname=password]')
             .type(pwd)
 
-        cy.contains('button', 'connecter')
+        cy.contains('connecter')
             .click()
 
         cy.get('.toolbar-title')
             .should('contain', 'Accueil')
 
-
+        cy.getCookie('phf-server-login')
+            .should('exist')
     })
 })

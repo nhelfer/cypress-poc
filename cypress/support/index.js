@@ -16,5 +16,12 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
+import 'cypress-promise/register'
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+// Conserve les cookies de connexion entre les tests
+beforeEach(function () {
+    Cypress.Cookies.preserveOnce('phf-server-login')
+})
