@@ -2,19 +2,20 @@
 
 // Prérequis : Ecran liste des salariés ouvert
 
-describe('PHF - Ajout Salarié', function() {
-    it('Crée un nouveau salarié', function() {
-        cy.get('page-employees')
-            .should('exist')
+Cypress.Commands.add('action_phf_ajout_salarie', () => {
+    cy.log('PHF - Ajout Salarié')
+    cy.log('Crée un nouveau salarié')
+    
+    cy.get('page-employees')
+        .should('exist')
 
-        cy.get('.button')
-            .contains('Ajouter')
-            .should('exist')
+    cy.get('.button')
+        .contains('Ajouter')
+        .should('exist')
 
-        cy.get('.button')
-            .contains('Ajouter')
-            .click()
+    cy.get('.button')
+        .contains('Ajouter')
+        .click()
 
-        // Remplir le formulaire et valider
-    })
+    // Remplir le formulaire et valider
 })

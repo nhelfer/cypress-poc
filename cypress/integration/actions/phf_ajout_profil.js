@@ -2,54 +2,36 @@
 
 // Prérequis : Page d'administration ouverte
 
-//var now = Cypress.moment().format('YYYY-MM-DD_HH-MM-SS')
-var now = "E2E_2018-11-19_00-46-01"
+Cypress.Commands.add('action_phf_ajout_profil', () => {
+    var now = Cypress.moment().format('YYYY-MM-DD_HH-MM-SS')
+    //var now = "2018-11-19_00-46-01"
+    var profilToAdd = "E2E_".concat(now)
 
-describe('PHF - Ajout Profil', function() {
-    it('Crée un nouveau profil', function() {
-        cy.expect('page-administration')
-            .to.exist
+    cy.log('PHF - Ajout Profil')
+    cy.log('Crée un nouveau profil')
 
-        // On va sur l'onglet Profils
-        /*cy.get('.phf-tabs > a')
-            .contains('Profils')
-            .click()*/
+    cy.get('.ion-md-phf-delete').should('exist')    //sync
 
-        cy.get('.selected')
-            .contains('Profils')
-            .should('exist')
+    cy.get('.ion-md-phf-delete').then(($defaultItems) => {
+        const nbProfilDefault = $defaultItems.length
         
-        // On attend le chargement de la liste des profils
-        cy.get('.page-admin-profil').should('exist')    //sync
-        cy.get('.flex-container').should('exist')    //sync
-        cy.get('ion-icon[aria-label="phf delete"]').should('exist')    //sync
+        cy.get('button:contains("Ajouter")').click()
 
-        const nbProfilDefault = cy.get('.page-admin-profil').find('>ion-icon').length
-        debugger
+        cy.get('.ion-md-phf-delete').then(($newItems) => {
+            const nbProfilNew = $newItems.length
 
-        // Remplir le formulaire et valider
+            expect(nbProfilNew, "On doit avoir un champ profil en plus").equals(nbProfilDefault+1)
 
-        cy.get('.button')
-            .contains('Ajouter')
-            .should('exist')
-
-        cy.get('.button')
-            .contains('Ajouter')
-            .click()
-
-        const nbProfilNew = cy.get('ion-icon[aria-label="phf delete"]').length
-
-        expect(nbProfilNew).equals(nbProfilDefault+1)
-
-        if (nbProfilNew = nbProfilDefault+1) {
-            cy.get('.block-item ng-star-inserted > input').last()
-                .type('E2E_'&now)
-
-            cy.get('.button')
-                .contains('Valider')
-                .click()
-        } else {
-            // Stop the test
-        }
+            if (nbProfilNew == nbProfilDefault+1) {
+                cy.get('.input-libelle').last()
+                    .type(profilToAdd)
+                
+                cy.get('.button')
+                    .contains('Valider')
+                    .click()
+            } else {
+                // Stop the test
+            }
+        })
     })
 })

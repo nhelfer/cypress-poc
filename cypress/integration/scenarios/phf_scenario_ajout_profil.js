@@ -2,22 +2,43 @@
 
 describe('PHF - Scénario Ajout Salarié', function() {
 
-    //Clean
-    require('../actions/phf_clean.js')
+    it('Clean', function() {  
+        cy.action_phf_clean()
+    })
 
-    // Connexion
-    require('../actions/phf_login.js')
+    
+    it('Connexion', function() {  
+        cy.action_phf_login()
+    })
+    
 
-    // Accès à la page d'administration
-    require('../actions/phf_menu_admin.js')
+    it('Accès à la page d\'administration', function() {  
+        cy.action_phf_menu_admin()
+    })
 
-    // Ajout d'un profil
-    require('../actions/phf_ajout_profil.js')
 
-    // Suppression du profil créé
-    require('../actions/phf_suppr_profil.js')
+    it('Ajout d\'un profil', function() {  
+        cy.action_phf_ajout_profil()
+    })
 
-    // Déconnexion
-    require('../actions/phf_logout.js')
+
+    it('Retour à la page d\'accueil', function() {  
+        cy.action_phf_retour()
+    })
+
+
+    it('Accès à la page d\'administration', function() {  
+        cy.action_phf_menu_admin()
+    })
+
+
+    it('Suppression du profil créé', function() {  
+        cy.action_phf_suppr_profil()
+    })
+
+
+    it('Déconnexion', function() {  
+        cy.action_phf_logout()
+    })
     
 })

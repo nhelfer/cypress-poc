@@ -15,7 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-
+import './actions'
 import 'cypress-promise/register'
 
 // Alternatively you can use CommonJS syntax:
@@ -25,3 +25,10 @@ import 'cypress-promise/register'
 beforeEach(function () {
     Cypress.Cookies.preserveOnce('phf-server-login')
 })
+
+// Stoppe l'exécution en cas de test fail
+afterEach(function() {
+    if (this.currentTest.state === 'failed') {
+        Cypress.runner.stop()
+    }
+});

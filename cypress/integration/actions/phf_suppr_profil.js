@@ -2,31 +2,33 @@
 
 // Prérequis : Page d'administration ouverte
 
-var profilToDelete = "E2E_2018-11-19_00-46-01"
+Cypress.Commands.add('action_phf_suppr_profil', () => {
 
-describe('PHF - Suppression Profil', function() {
-    it('Crée un nouveau profil', function() {
-        cy.expect('page-administration')
-            .to.exist
+    cy.log('PHF - Suppression Profil')
+    cy.log('Supprime le dernier profil')
 
-        // On va sur l'onglet Profils
-        cy.get('.phf-tabs > a')
-            .contains('Profils')
+    cy.get('.ion-md-phf-delete').should('exist')    //sync
+
+    cy.get('.ion-md-phf-delete').then(($defaultItems) => {
+        const nbProfilDefault = $defaultItems.length
+        
+        // On clique sur le bouton suppression
+        cy.get('.ion-md-phf-delete')
+            .last()
+            .parent('span')
             .click()
-
-        cy.get('.selected')
-            .contains('Profils')
-            .should('exist')
-
-        cy.get('.selected')
-            .contains('Profils')
-            .click()
-
-        cy.get('ion-icon[ng-reflect-name=phf-delete] > input[ng-reflect-model='+profilToDelete+']')
-            .next('ion-icon[ng-reflect-name=phf-delete]')
-            .click()
-
+        
+        // On doit être redirigé vers la page d'accueil
         cy.get('.toolbar-title')
             .should('contain', 'Accueil')
+        
+        // Accès à la page d'administration
+        cy.action_phf_menu_admin()
+
+        cy.get('.ion-md-phf-delete').then(($newItems) => {
+            const nbProfilNew = $newItems.length
+
+            expect(nbProfilNew, "On doit avoir un champ profil en moins").equals(nbProfilDefault-1)
+        })
     })
 })
