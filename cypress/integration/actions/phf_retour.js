@@ -6,9 +6,8 @@ Cypress.Commands.add('action_phf_retour', () => {
     cy.log('PHF - Retour à la page d\'accueil')
     cy.log('Se rend sur la gestion des salariés à partir du menu')
 
-    cy.get('.toolbar > .bar-buttons').should('exist')
+    cy.get('.ion-page:visible > .header > .toolbar > .back-button').should('exist')
 
-    cy.get('.back-button').then(($backButton) => {
-        $backButton.click();
-    })
+    cy.get('.ion-page:visible > .header > .toolbar > .back-button')
+        .click()
 })

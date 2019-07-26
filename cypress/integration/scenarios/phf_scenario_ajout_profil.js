@@ -36,6 +36,11 @@ describe('PHF - Scénario Ajout Salarié', function() {
         cy.action_phf_suppr_profil()
     })
 
+    
+    it('Retour à la page d\'accueil', function() {  
+        cy.action_phf_retour()
+    })
+
 
     it('Déconnexion', function() {  
         cy.action_phf_logout()

@@ -5,8 +5,6 @@ Cypress.Commands.add('action_phf_menu_admin', () => {
     cy.log('PHF - Menu Administration')
     cy.log('Se rend sur la gestion des salariés à partir du menu')
     
-    /*cy.expect('.toolbar > .bar-buttons')
-        .to.exist*/
     cy.get('.toolbar > .bar-buttons').should('exist')
 
     cy.get('.menu-inner').then(($menu) => {
@@ -25,6 +23,7 @@ Cypress.Commands.add('action_phf_menu_admin', () => {
 
     cy.get('.menu-inner > .content > .scroll-content')
         .contains('Administration')
+        .parent()
         .click()
 
     cy.get('page-administration')

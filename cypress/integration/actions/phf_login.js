@@ -16,7 +16,7 @@ Cypress.Commands.add('action_phf_login', () => {
     // Ouverture de la page
     cy.visit(url+"/app/")
     
-    cy.get('.toolbar-title')
+    cy.get('.toolbar-title:visible')
         .should('contain', 'Connexion')
 
     cy.get('input[formcontrolname=login]')
@@ -28,7 +28,7 @@ Cypress.Commands.add('action_phf_login', () => {
     cy.contains('connecter')
         .click()
 
-    cy.get('.toolbar-title')
+    cy.get('.toolbar-title:visible')
         .should('contain', 'Accueil')
 
     cy.getCookie('phf-server-login')
