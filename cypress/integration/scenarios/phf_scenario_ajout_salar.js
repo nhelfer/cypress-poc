@@ -2,20 +2,43 @@
 
 describe('PHF - Scénario Ajout Salarié', function() {
 
-    //Clean
-    require('../actions/phf_clean.js')
+    it('Clean', function() {  
+        cy.action_phf_clean()
+    })
+
     
-    // Connexion
-    require('../actions/phf_login.js')
+    it('Connexion', function() {  
+        cy.action_phf_login()
+    })
+    
 
-    // Accès à la page des salariés
-    require('../actions/phf_menu_salaries.js')
+    it('Accès à la page salariés', function() {  
+        cy.action_phf_menu_salaries()
+    })
 
-    // Ajout d'un salarié
 
-    // Suppression du salarié créé
+    it('Ajout d\'un salarié', function() {  
+        cy.action_phf_ajout_salarie()
+    })
 
-    // Déconnexion
-    require('../actions/phf_logout.js')
+
+    it('Retour à la page d\'accueil', function() {  
+        cy.action_phf_retour()
+    })
+
+
+    it('Accès à la page salariés', function() {  
+        cy.action_phf_menu_salaries()
+    })
+
+
+    it('Suppression du salarié créé', function() {  
+        cy.action_phf_suppr_salarie()
+    })
+
+    
+    it('Retour à la page d\'accueil', function() {  
+        cy.action_phf_retour()
+    })
 
 })
