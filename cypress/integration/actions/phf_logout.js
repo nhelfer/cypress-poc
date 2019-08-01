@@ -28,12 +28,10 @@ Cypress.Commands.add('action_phf_logout', () => {
 
     cy.get('.menu-inner > .content > .scroll-content')
         .get('ion-icon[name="phf-logout"]')
-        .parent()
-        .parent()
         .then (($button) => {
             $button.click()
         })
-    
+        
     cy.get('.toolbar-title')
         .should('contain', 'Connexion')
 })
